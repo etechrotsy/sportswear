@@ -1,0 +1,44 @@
+<?php
+/**
+* Implements hook_menu
+*/
+
+function checkout_form_menu(){
+	$items = array();
+
+	$items['checkout/form'] = array(
+        'type' => MENU_CALLBACK,
+        'access callback' => TRUE,
+        // 'access arguments' => array('administer users'),
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array(
+            'checkout_final_form'
+        )
+    );
+
+    return $items;
+}
+
+function checkout_final_form($form, &$form_state) {
+
+	$form['total'] = array(
+		'#type' => 'textfield',
+		'#title' => 'total',
+		'#size' => 40,
+		);
+
+	$form['card_number'] = array(
+		'#type' => 'textfield',
+		'#title' => 'numero carte',
+		'#size' => 40,
+		);
+
+	$form['submit_button'] = array(
+	    '#type' => 'submit',
+	    '#value' => t('Envoyer'),
+	  );
+
+	// return system_settings_form($form);
+	return $form;
+
+}
